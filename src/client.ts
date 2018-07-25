@@ -28,7 +28,10 @@ const editor = monaco.editor.create(document.getElementById("container")!, {
     glyphMargin: true,
     lightbulb: {
         enabled: true
-    }
+    },
+    fixedOverflowWidgets: true,
+    automaticLayout: true,
+    scrollBeyondLastLine: false
 });
 
 window.onresize = () => {
