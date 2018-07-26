@@ -13,3 +13,8 @@ Getting started:
 3. Get PSES code base and change the paths in [this line](https://github.com/tylerl0706/monaco-powershell/blob/master/src/json-server-launcher.ts#L14)
 4. `npm run build`
 5. `npm start`
+
+Shoutouts:
+
+* [VSCode's Monaco editor](https://github.com/Microsoft/monaco-editor)
+* [Monaco Language Client](https://github.com/TypeFox/monaco-languageclient)
