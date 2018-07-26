@@ -2,29 +2,26 @@
  * Copyright (c) 2018 TypeFox GmbH (http://www.typefox.io). All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-import { listen, MessageConnection } from 'vscode-ws-jsonrpc';
+import { listen, MessageConnection } from 'vscode-ws-jsonrpc/lib';
 import {
     BaseLanguageClient, CloseAction, ErrorAction,
     createMonacoServices, createConnection
-} from 'monaco-languageclient';
+} from 'monaco-languageclient/lib';
 import normalizeUrl = require('normalize-url');
 const ReconnectingWebSocket = require('reconnecting-websocket');
 
 // register Monaco languages
 monaco.languages.register({
-    id: 'json',
-    extensions: ['.json', '.bowerrc', '.jshintrc', '.jscsrc', '.eslintrc', '.babelrc'],
-    aliases: ['JSON', 'json'],
-    mimetypes: ['application/json'],
+    id: 'powershell',
+    extensions: ['.ps1', '.psd1', '.psm1'],
+    aliases: ['pwsh', 'PowerShell'],
+    mimetypes: ['text/plain'],
 });
 
 // create Monaco editor
-const value = `{
-    "$schema": "http://json.schemastore.org/coffeelint",
-    "line_endings": "unix"
-}`;
+const value = `Write-Host "Hello World!"`;
 const editor = monaco.editor.create(document.getElementById("container")!, {
-    model: monaco.editor.createModel(value, 'json', monaco.Uri.parse('inmemory://model.json')),
+    model: monaco.editor.createModel(value, 'powershell', monaco.Uri.parse('inmemory://model.ps1')),
     glyphMargin: true,
     lightbulb: {
         enabled: true
@@ -58,7 +55,7 @@ function createLanguageClient(connection: MessageConnection): BaseLanguageClient
         name: "Monaco PowerShell",
         clientOptions: {
             // use a language id as a document selector
-            documentSelector: ['json'],
+            documentSelector: ['powershell'],
             // disable the default error handler
             errorHandler: {
                 error: () => ErrorAction.Continue,

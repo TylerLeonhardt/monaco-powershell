@@ -7,8 +7,8 @@ import * as http from "http";
 import * as url from "url";
 import * as net from "net";
 import * as express from "express";
-import * as rpc from "vscode-ws-jsonrpc";
-import { launch } from "./json-server-launcher";
+import * as rpc from "vscode-ws-jsonrpc/lib";
+import { launch } from "./pses-launcher";
 
 process.on('uncaughtException', function (err: any) {
     console.error('Uncaught Exception: ', err.toString());
